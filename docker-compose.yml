@@ -1,0 +1,22 @@
+version: "2.1"
+services:
+  webtop:
+    image: lscr.io/linuxserver/webtop:ubuntu-xfce
+    container_name: webtop
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - SUBFOLDER=/ #optional
+      - KEYBOARD=de-de-qwertz #optional
+    volumes:
+      - /root/Volumes/webtop:/config
+      - /var/run/docker.sock:/var/run/docker.sock #optional
+    ports:
+      - 3000:3000
+
+
+    shm_size: "12gb" #optional
+    restart: unless-stopped
